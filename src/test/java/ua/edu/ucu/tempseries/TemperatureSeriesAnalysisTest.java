@@ -268,6 +268,14 @@ public class TemperatureSeriesAnalysisTest {
         assertEquals(expNumOfTemps, actualNumOfTemps);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void testSummaryStatistics() {
+        double[] temperatureSeries = new double[]{};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+
+        seriesAnalysis.summaryStatistics();
+    }
+
     @Test
     public void testAddTemps() {
         double[] temperatureSeries = {34.0, -75.4, 80.0, 12.6};

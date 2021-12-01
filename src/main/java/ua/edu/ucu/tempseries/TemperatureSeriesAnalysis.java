@@ -3,7 +3,7 @@ package ua.edu.ucu.tempseries;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.InputMismatchException;
-import java.lang.Math;
+//import java.lang.Math;
 import java.util.List;
 
 public class TemperatureSeriesAnalysis {
@@ -74,7 +74,7 @@ public class TemperatureSeriesAnalysis {
                 closest = t;
                 minDiff = Math.abs(closest - tempValue);
             }
-            if (t > 0 && Math.abs(t - tempValue) == minDiff) {
+            if (t > 0 && Math.abs(t - tempValue - minDiff) < .000001) {
                 closest = t;
                 minDiff = Math.abs(closest - tempValue);
             }
@@ -113,6 +113,7 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TempSummaryStatistics summaryStatistics() {
+        check(tempSeries);
         return new TempSummaryStatistics(average(), deviation(), min(), max());
     }
 
