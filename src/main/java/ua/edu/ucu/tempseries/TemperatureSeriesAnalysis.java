@@ -15,12 +15,14 @@ public class TemperatureSeriesAnalysis {
     }
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
+        double minPossibleTemp = -273.5;
         for (double t: temperatureSeries) {
-            if (t < -273.5) {
+            if (t < minPossibleTemp) {
                 throw new InputMismatchException();
             }
         }
-        this.tempSeries = Arrays.copyOf(temperatureSeries, temperatureSeries.length);
+        this.tempSeries = Arrays.copyOf(temperatureSeries,
+                temperatureSeries.length);
     }
 
     public void check(double[] input) {
@@ -43,7 +45,7 @@ public class TemperatureSeriesAnalysis {
         double deviation = 0.0;
         double mean = average();
         for (double t: tempSeries) {
-            deviation += Math.pow(t - mean, 2);
+            deviation += (t - mean) * (t - mean);
         }
         return Math.sqrt(deviation/tempSeries.length);
     }
@@ -88,7 +90,7 @@ public class TemperatureSeriesAnalysis {
                 tempsLess.add(t);
             }
         }
-        return ArrayToDouble(tempsLess);
+        return arrayToDouble(tempsLess);
     }
 
     public double[] findTempsGreaterThen(double tempValue) {
@@ -99,12 +101,12 @@ public class TemperatureSeriesAnalysis {
                 tempsGreater.add(t);
             }
         }
-        return ArrayToDouble(tempsGreater);
+        return arrayToDouble(tempsGreater);
     }
 
-    public double[] ArrayToDouble(List<Double> input) {
+    public double[] arrayToDouble(List<Double> input) {
         double[] result = new double[input.size()];
-        for (int i=0; i < input.size(); i++) {
+        for (int i = 0; i < input.size(); i++) {
             result[i] = input.get(i);
         }
         return result;
@@ -127,12 +129,14 @@ public class TemperatureSeriesAnalysis {
         int realLength = numOfTemps();
         if (realLength <= tempSeries.length + temps.length) {
             double[] newTempSeries = new double[2 * tempSeries.length];
-            System.arraycopy(tempSeries, 0, newTempSeries, 0, tempSeries.length);
-            System.arraycopy(temps, 0, newTempSeries, tempSeries.length, temps.length);
+            System.arraycopy(tempSeries, 0, newTempSeries,
+                    0, tempSeries.length);
+            System.arraycopy(temps, 0, newTempSeries,
+                    tempSeries.length, temps.length);
             this.tempSeries = newTempSeries;
         }
         else {
-            System.arraycopy(temps,0, tempSeries, realLength, temps.length);
+            System.arraycopy(temps, 0, tempSeries, realLength, temps.length);
         }
         return numOfTemps();
     }
