@@ -9,9 +9,16 @@ import java.util.InputMismatchException;
 public class TemperatureSeriesAnalysisTest {
 
     @Test(expected = InputMismatchException.class)
-    public void TestTemperatureSeriesAnalysis() {
+    public void testTemperatureSeriesAnalysisMinPossibleTemps() {
         double [] temperatureSeries = {90.3, -100.15, 150.0, -274.4};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testTemperatureSeriesWithDefaultConstructor() {
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis();
+
+        seriesAnalysis.average();
     }
 
     @Test(expected = IllegalArgumentException.class)
