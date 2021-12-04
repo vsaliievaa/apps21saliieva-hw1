@@ -8,7 +8,8 @@ import java.util.List;
 
 public class TemperatureSeriesAnalysis {
 
-    private static final double minPossibleTemp = -273.5;
+    private static final double MIN_POSSIBLE_TEMP = -273.5;
+    private static final double DIFF_FOR_COMPARISON = .000001;
 
     private double[] tempSeries;
 
@@ -18,7 +19,7 @@ public class TemperatureSeriesAnalysis {
 
     public TemperatureSeriesAnalysis(double[] temperatureSeries) {
         for (double t: temperatureSeries) {
-            if (t < minPossibleTemp) {
+            if (t < MIN_POSSIBLE_TEMP) {
                 throw new InputMismatchException();
             }
         }
@@ -75,7 +76,7 @@ public class TemperatureSeriesAnalysis {
                 closest = t;
                 minDiff = Math.abs(closest - tempValue);
             }
-            if (t > 0 && Math.abs(t - tempValue - minDiff) < .000001) {
+            if (t > 0 && Math.abs(t - tempValue - minDiff) < DIFF_FOR_COMPARISON) {
                 closest = t;
                 minDiff = Math.abs(closest - tempValue);
             }

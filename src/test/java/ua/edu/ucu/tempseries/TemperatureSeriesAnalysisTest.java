@@ -276,11 +276,20 @@ public class TemperatureSeriesAnalysisTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testSummaryStatistics() {
+    public void testSummaryStatisticsWithEmptySeries() {
         double[] temperatureSeries = new double[]{};
         TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
 
         seriesAnalysis.summaryStatistics();
+    }
+
+    @Test
+    public void testSummaryStatistics() {
+        double[] temperatureSeries = {12.2, 13.3, 14.4};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        TempSummaryStatistics stats = seriesAnalysis.summaryStatistics();
+
+        assertNotNull(stats);
     }
 
     @Test
