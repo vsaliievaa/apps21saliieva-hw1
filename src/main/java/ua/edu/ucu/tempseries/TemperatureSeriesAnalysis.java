@@ -76,8 +76,8 @@ public class TemperatureSeriesAnalysis {
                 closest = t;
                 minDiff = Math.abs(closest - tempValue);
             }
-            if (t > 0 && Math.abs(t - tempValue -
-                    minDiff) < DIFF_FOR_COMPARISON) {
+            if (t > 0 && Math.abs(t - tempValue
+                    - minDiff) < DIFF_FOR_COMPARISON) {
                 closest = t;
                 minDiff = Math.abs(closest - tempValue);
             }
