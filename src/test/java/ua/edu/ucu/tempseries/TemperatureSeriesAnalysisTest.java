@@ -301,4 +301,18 @@ public class TemperatureSeriesAnalysisTest {
 
         assertEquals(6, numOfAddedTemps);
     }
+
+    @Test
+    public void testAddTempsWithAllocationOfNewSeries() {
+        double[] temperatureSeries = {81.6, -51.0, 25.5, 62.3};
+        TemperatureSeriesAnalysis seriesAnalysis = new TemperatureSeriesAnalysis(temperatureSeries);
+        double[] temps = {12.3, 45.6};
+        seriesAnalysis.addTemps(temps);
+
+        double[] temp = {34.5};
+
+        int numOfAddedTemps = seriesAnalysis.addTemps(temp);
+
+        assertEquals(7, numOfAddedTemps);
+    }
 }

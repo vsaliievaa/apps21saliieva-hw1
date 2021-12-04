@@ -76,7 +76,8 @@ public class TemperatureSeriesAnalysis {
                 closest = t;
                 minDiff = Math.abs(closest - tempValue);
             }
-            if (t > 0 && Math.abs(t - tempValue - minDiff) < DIFF_FOR_COMPARISON) {
+            if (t > 0 && Math.abs(t - tempValue -
+                    minDiff) < DIFF_FOR_COMPARISON) {
                 closest = t;
                 minDiff = Math.abs(closest - tempValue);
             }
@@ -141,6 +142,7 @@ public class TemperatureSeriesAnalysis {
         else {
             System.arraycopy(temps, 0, tempSeries, realLength, temps.length);
         }
-        return numOfTemps();
+        return realLength + temps.length;
+        //return numOfTemps();
     }
 }
